@@ -1,0 +1,120 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+  <title>Register</title>
+  <script type="text/javascript" src="./jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+  <form>
+    <table style="height: 114px;" width="684">
+      <tbody>
+        <tr style="height: 18px;">
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+        </tr>
+        <tr style="height: 18px;">
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+        </tr>
+        <tr style="height: 18px;">
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;邮箱</td>
+          <td style="width: 107.333px; height: 18px;" colspan="2" align="center">&nbsp;<input id="eml" type="text"
+              align="middle" /></td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+        </tr>
+        <tr style="height: 18px;">
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;用户名</td>
+          <td style="width: 107.333px; height: 18px;" colspan="2" align="center">&nbsp;<input type="text" align="middle"
+              id="usr" /></td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+        </tr>
+        <tr style="height: 18px;">
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;密码</td>
+          <td style="width: 107.333px; height: 18px;" colspan="2" align="center">&nbsp;<input id="pw1" name="pwd1"
+              type="password" align="middle" /></td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+        </tr>
+        <tr style="height: 18px;">
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;重复密码</td>
+          <td style="width: 107.333px; height: 18px;" colspan="2" align="center">&nbsp;<input id="pw2" name="pwd2"
+              type="password" align="middle" /></td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+        </tr>
+        <tr style="height: 18px;">
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+          <td style="width: 107.333px; height: 18px;" colspan="2" align="center">&nbsp;<input id="b1" name="abc"
+              type="button" value="register" align="middle" /></td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+        </tr>
+        <tr style="height: 18px;">
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+          <td style="width: 107.333px; height: 18px;">&nbsp;</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </form>
+</body>
+
+</html>
+<script type="text/javascript">
+
+  $(document).ready(function () {
+    $("#b1").click(function () {
+      // $.post("https://nqsqk8tord.execute-api.cn-north-1.amazonaws.com.cn/dev/user/registry",{
+      //   username:$("#usr").val(),
+      //   password1:$("#pw1").val(),
+      //   password2:$("#pw2").val()
+      // }).done(function(data){alert(data)}).fail(function(err){alert(err)});
+
+      $.post("https://nqsqk8tord.execute-api.cn-north-1.amazonaws.com.cn/dev/user/registry", JSON.stringify({
+        username: $("#usr").val(),
+        email: $("#eml").val(),
+        password1: $("#pw1").val(),
+        password2: $("#pw2").val()
+      })).done(function (data) {  window.sessionStorage.setItem("token", data);window.sessionStorage.setItem("user", $("#usr").val()); window.location.href = 'main.html'; }).fail(function (err) {
+        console.log(err);
+        console.log(JSON.stringify(err));
+        alert(err);
+      });
+
+      // $.ajax({
+      // 	url: "https://nqsqk8tord.execute-api.cn-north-1.amazonaws.com.cn/dev/user/registry",
+      //   type:"POST",
+      //   data: JSON.stringify({
+      //   username:$("#usr").val(),
+      //   password1:$("#pw1").val(),
+      //   password2:$("#pw2").val()
+      //   }),
+      //   contentType:"application/json; charset=utf-8",
+      //   dataType:"json",
+      //   success:function(data){alert(data)}
+      // });
+
+    });
+  });
+</script>
