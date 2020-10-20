@@ -1,7 +1,7 @@
 Reference:
 https://www.eksworkshop.com/
 
-# 环境准备
+## 环境准备
 ### 1. 安装下载kubectl及eksctl
 1.1	Kubectl
 ```CLI
@@ -46,9 +46,26 @@ Download yaml file
 
 [ec2-user@ip-172-31-89-175 .ssh]$ echo "export MASTER_ARN=${MASTER_ARN}" | tee -a ~/.bash_profile
 export MASTER_ARN=arn:aws:kms:us-east-1:348026336041:key/e978dc48-4299-4bf7-999c-46101f671ac9
+
 编辑`eksworkshop-youname.yaml`，复制上述`MASTER_ARN`的连接到yaml文件的`keyARN`处
 ```
 eksctl create cluster -f `eksworkshop-youname.yaml`
 ```
+### 2. Launch Code Commit & CodeBuild
+CloudFormation 执行 ops-deployment-cicd.yaml
+### 2.1 Going to CloudFormation
+### 2.2 Create Stack
+### 2.3 Design Stack
+### 2.4 Copy yml to template (clean default firstly)
+### 2.5 Validate the template
+### 2.6 Go to Next
+### 2.7 Naming Stack
+### 2.8 Config stack
+### 2.9 Running stack
+### 2.10 Waiting for Stack Finished
+
+### 3. Modified auth K8S with Kubectl Role
+
+
 
 
