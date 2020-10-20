@@ -18,7 +18,7 @@ cd /tmp
 . /etc/profile.d/bash_completion.sh
 . ~/.bash_completion
 
-3. Create Key for EKS and Upload to KMS
+3.Create Key for EKS and Upload to KMS
 
 ssh-keygen. ##默认设置，一路回车
 
@@ -30,7 +30,7 @@ You must specify a region. You can also configure your region by running "aws co
 #### [ec2-user@ip-172-31-89-175 .ssh]$ aws ec2 import-key-pair --key-name "eksworkshop" --public-key-material file://~/.ssh/id_rsa.pub
 Unable to locate credentials. You can configure credentials by running "aws configure".
 
-4. Setting customer master key (CMK) for EKS
+4.Setting customer master key (CMK) for EKS
 aws kms create-alias --alias-name alias/eksworkshop --target-key-id $(aws kms create-key --query KeyMetadata.Arn --output text)
 
 export MASTER_ARN=$(aws kms describe-key --key-id alias/eksworkshop --query KeyMetadata.Arn --output text)
@@ -40,7 +40,7 @@ echo "export MASTER_ARN=${MASTER_ARN}" | tee -a ~/.bash_profile
 ------------------------------
 资源创建
 ------------------------------
-1. Create EKS Cluster (30min)
+1.Create EKS Cluster (30min)
 Download yaml file
 
 
