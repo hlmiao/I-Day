@@ -3,14 +3,14 @@ https://www.eksworkshop.com/
 
 ## 环境准备
 ### 1. 安装下载kubectl及eksctl
-1.1	Kubectl
+#### 1.1	Kubectl
 ```CLI
 # sudo curl --silent --location -o /usr/local/bin/kubectl \
 https://amazon-eks.s3.us-west-2.amazonaws.com/1.17.7/2020-07-08/bin/linux/amd64/kubectl
 
 sudo chmod +x /usr/local/bin/kubectl
 ```
-1.2 Eksctl
+#### 1.2 Eksctl
 ```CLI
 curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
 cd /tmp
@@ -65,7 +65,9 @@ CloudFormation 执行 ops-deployment-cicd.yaml
 #### 2.4 Copy yml to template (clean default firstly)
 ![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/005.png)
 #### 2.5 Validate the template
+```
 ![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/006.png)
+```
 #### 2.6 Go to Next
 ![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/007.png)
 #### 2.7 Naming Stack
