@@ -18,36 +18,37 @@ cd /tmp
 . /etc/profile.d/bash_completion.sh
 . ~/.bash_completion
 ```
-### 2.Create Key for EKS and Upload to KMS
-
+### 2. Create Key for EKS and Upload to KMS
+```
 ssh-keygen. ##默认设置，一路回车
-
+```
+```
 aws ec2 import-key-pair --key-name "eksworkshop" --public-key-material file://~/.ssh/id_rsa.pub
-
+```
+```
 如果遇到下面的错误，执行aws configure，做初始化配置
 #### [ec2-user@ip-172-31-89-175 .ssh]$ aws ec2 import-key-pair --key-name "eksworkshop" --public-key-material file://~/.ssh/id_rsa.pub
 You must specify a region. You can also configure your region by running "aws configure"
 #### [ec2-user@ip-172-31-89-175 .ssh]$ aws ec2 import-key-pair --key-name "eksworkshop" --public-key-material file://~/.ssh/id_rsa.pub
 Unable to locate credentials. You can configure credentials by running "aws configure".
-
-4.Setting customer master key (CMK) for EKS
--
+```
+### 3. Setting customer master key (CMK) for EKS
+```
 aws kms create-alias --alias-name alias/eksworkshop --target-key-id $(aws kms create-key --query KeyMetadata.Arn --output text)
 
 export MASTER_ARN=$(aws kms describe-key --key-id alias/eksworkshop --query KeyMetadata.Arn --output text)
 
 echo "export MASTER_ARN=${MASTER_ARN}" | tee -a ~/.bash_profile
-
-资源创建
--
-1.Create EKS Cluster (30min)
+```
+# 资源创建
+### 1. Create EKS Cluster (30min)
 Download yaml file
 
-#一级标题  
-##二级标题  
-###三级标题  
-####四级标题  
-#####五级标题  
-######六级标题  
+[ec2-user@ip-172-31-89-175 .ssh]$ echo "export MASTER_ARN=${MASTER_ARN}" | tee -a ~/.bash_profile
+export MASTER_ARN=arn:aws:kms:us-east-1:348026336041:key/e978dc48-4299-4bf7-999c-46101f671ac9
+编辑`eksworkshop-youname.yaml`，复制上述`MASTER_ARN`的连接到yaml文件的`keyARN`处
+```
+eksctl create cluster -f `eksworkshop-youname.yaml`
+```
 
 
