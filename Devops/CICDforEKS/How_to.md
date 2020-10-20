@@ -1,20 +1,23 @@
 Reference:
 https://www.eksworkshop.com/
 
-环境准备
----
-1.安装下载eksctl及kubectl
-1.1	Kubectl
-    sudo curl --silent --location -o /usr/local/bin/kubectl \
-    https://amazon-eks.s3.us-west-2.amazonaws.com/1.17.7/2020-07-08/bin/linux/amd64/kubectl
+# 环境准备
 
-    sudo chmod +x /usr/local/bin/kubectl
-2.Eksctl
-    curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
-    cd /tmp
-    ./eksctl completion bash >> ~/.bash_completion
-    . /etc/profile.d/bash_completion.sh
-    . ~/.bash_completion
+### 1. 安装下载kubectl及eksctl
+1.1	Kubectl
+```CLI
+# sudo curl --silent --location -o /usr/local/bin/kubectl \
+https://amazon-eks.s3.us-west-2.amazonaws.com/1.17.7/2020-07-08/bin/linux/amd64/kubectl
+
+sudo chmod +x /usr/local/bin/kubectl
+
+1.2 Eksctl
+```CLI
+curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+cd /tmp
+./eksctl completion bash >> ~/.bash_completion
+. /etc/profile.d/bash_completion.sh
+. ~/.bash_completion
 
 ##3.Create Key for EKS and Upload to KMS
 
