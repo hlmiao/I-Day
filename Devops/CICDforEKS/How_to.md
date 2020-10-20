@@ -15,7 +15,7 @@ sudo chmod +x /usr/local/bin/kubectl
 curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
 cd /tmp
 ./eksctl completion bash >> ~/.bash_completion
-. /etc/profile.d/bash_completion.sh
+./etc/profile.d/bash_completion.sh
 . ~/.bash_completion
 ```
 ### 2. Create Key for EKS and Upload to KMS
@@ -93,7 +93,41 @@ kubectl patch configmap/aws-auth -n kube-system --patch "$(cat /tmp/aws-auth-pat
 kubectl edit -n kube-system configmaps/aws-auth
 ```
 ![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/014.png)
-
-
+### 4. Config CodeCommit
+#### 4.1 Going to CodeCommit that has been created & following guide to finished configuration
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/015.png)
+#### 4.2 连接步骤
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/016.png)
+https://console.aws.amazon.com/codesuite/codecommit/repositories/eksworkshop-eksctl/connect?connectionType=connection-instructions-GitRemoteHttps&region=us-east-1
+#### 4.3 EC2上的设置
+```
+sudo yum -y install python2-pip
+git clone codecommit::us-east-1://eksworkshop-eksctl
+download link
+```
+#### 4.4 Following git command to upload code to CodeCommit
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/017.png)
+#### 4.5 Checking Code Exist in CodeCommit
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/018.png)
+## CI/CD执行
+### 1. Running CodeBuild
+#### 1.1 Go to CodeBuild Page and find the Build Project
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/019.png)
+#### 1.2 Running the Project
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/020.png)
+#### 1.3 Checking the build log
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/021.png)
+#### 1.4 Waiting for build finished
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/022.png)
+#### 1.5 Checking whether application has been deployed
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/023.png)
+#### 1.6 Go to the Browser to check application
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/024.png)
+#### 1.7 Updating the Code and push to code commit
+```
+[ec2-user@ip-172-31-89-175 templates]$ vim /tmp/eksworkshop-eksctl/templates/hello.html
+```
+#### 1.8 Checking the application has been updated
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/025.png)
 
 
