@@ -40,7 +40,7 @@ export MASTER_ARN=$(aws kms describe-key --key-id alias/eksworkshop --query KeyM
 
 echo "export MASTER_ARN=${MASTER_ARN}" | tee -a ~/.bash_profile
 ```
-# 资源创建
+## 资源创建
 ### 1. Create EKS Cluster (30min)
 Download yaml file
 
