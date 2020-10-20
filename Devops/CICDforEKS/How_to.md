@@ -52,32 +52,32 @@ export MASTER_ARN=arn:aws:kms:us-east-1:348026336041:key/e978dc48-4299-4bf7-999c
 eksctl create cluster -f eksworkshop-youname.yaml
 ```
 如果创建EKS中报kubectl版本错误，可以忽略
-![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/001.png)
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/pic/001.png)
 
 ### 2. Launch Code Commit & CodeBuild
 CloudFormation 执行 ops-deployment-cicd.yaml
 #### 2.1 Going to CloudFormation
-![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/002.png)
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/pic/002.png)
 #### 2.2 Create Stack
-![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/003.png)
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/pic/003.png)
 #### 2.3 Design Stack
-![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/004.png)
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/pic/004.png)
 #### 2.4 Copy yml to template (clean default firstly)
-![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/005.png)
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/pic/005.png)
 #### 2.5 Validate the template
-![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/006.png)
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/pic/006.png)
 #### 2.6 Go to Next
-![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/007.png)
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/pic/007.png)
 #### 2.7 Naming Stack
-![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/008.png)
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/pic/008.png)
 #### 2.8 Config stack
-![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/009.png)
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/pic/009.png)
 #### 2.9 Running stack
-![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/010.png)
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/pic/010.png)
 #### 2.10 Waiting for Stack Finished
-![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/011.png)
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/pic/011.png)
 #### 2.11 Validate Resource being Created
-![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/012.png)
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/pic/012.png)
 ### 3. Modified auth K8S with Kubectl Role
 Reference: https://www.eksworkshop.com/intermediate/220_codepipeline/configmap/
 #### 3.1 Change Account ID to yours if you do not config in your env
@@ -85,19 +85,19 @@ Reference: https://www.eksworkshop.com/intermediate/220_codepipeline/configmap/
 ROLE="    - rolearn: arn:aws:iam::$ACCOUNT_ID:role/EksWorkshopCodeBuildKubectlRole\n      username: build\n      groups:\n        - system:masters"
 ```
 #### 3.2 如果遇到类似的报错，执行`sudo yum update`
-![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/013.png)
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/pic/013.png)
 #### 3.3 手动修改aws-auth ConfigMap，注意图片中的mapRoles是否有AccoundID
 ```
 kubectl get -n kube-system configmap/aws-auth -o yaml | awk "/mapRoles: \|/{print;print \"$ROLE\";next}1" > /tmp/aws-auth-patch.yml
 kubectl patch configmap/aws-auth -n kube-system --patch "$(cat /tmp/aws-auth-patch.yml)"
 kubectl edit -n kube-system configmaps/aws-auth
 ```
-![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/014.png)
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/pic/014.png)
 ### 4. Config CodeCommit
 #### 4.1 Going to CodeCommit that has been created & following guide to finished configuration
-![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/015.png)
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/pic/015.png)
 #### 4.2 连接步骤
-![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/016.png)
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/pic/016.png)
 https://console.aws.amazon.com/codesuite/codecommit/repositories/eksworkshop-eksctl/connect?connectionType=connection-instructions-GitRemoteHttps&region=us-east-1
 #### 4.3 EC2上的设置
 ```
@@ -106,28 +106,28 @@ git clone codecommit::us-east-1://eksworkshop-eksctl
 download link
 ```
 #### 4.4 Following git command to upload code to CodeCommit
-![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/017.png)
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/pic/017.png)
 #### 4.5 Checking Code Exist in CodeCommit
-![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/018.png)
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/pic/018.png)
 ## CI/CD执行
 ### 1. Running CodeBuild
 #### 1.1 Go to CodeBuild Page and find the Build Project
-![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/019.png)
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/pic/019.png)
 #### 1.2 Running the Project
-![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/020.png)
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/pic/020.png)
 #### 1.3 Checking the build log
-![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/021.png)
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/pic/021.png)
 #### 1.4 Waiting for build finished
-![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/022.png)
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/pic/022.png)
 #### 1.5 Checking whether application has been deployed
-![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/023.png)
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/pic/023.png)
 #### 1.6 Go to the Browser to check application
-![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/024.png)
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/pic/024.png)
 #### 1.7 Updating the Code and push to code commit
 ```
 [ec2-user@ip-172-31-89-175 templates]$ vim /tmp/eksworkshop-eksctl/templates/hello.html
 ```
 #### 1.8 Checking the application has been updated
-![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/025.png)
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/pic/025.png)
 
 
