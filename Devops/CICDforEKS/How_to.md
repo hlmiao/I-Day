@@ -57,17 +57,41 @@ eksctl create cluster -f eksworkshop-youname.yaml
 ### 2. Launch Code Commit & CodeBuild
 CloudFormation 执行 ops-deployment-cicd.yaml
 #### 2.1 Going to CloudFormation
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/002.png)
 #### 2.2 Create Stack
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/003.png)
 #### 2.3 Design Stack
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/004.png)
 #### 2.4 Copy yml to template (clean default firstly)
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/005.png)
 #### 2.5 Validate the template
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/006.png)
 #### 2.6 Go to Next
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/007.png)
 #### 2.7 Naming Stack
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/008.png)
 #### 2.8 Config stack
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/009.png)
 #### 2.9 Running stack
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/010.png)
 #### 2.10 Waiting for Stack Finished
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/011.png)
 
 ### 3. Modified auth K8S with Kubectl Role
+Reference: https://www.eksworkshop.com/intermediate/220_codepipeline/configmap/
+#### 3.1 Change Account ID to yours if you do not config in your env
+```
+ROLE="    - rolearn: arn:aws:iam::$ACCOUNT_ID:role/EksWorkshopCodeBuildKubectlRole\n      username: build\n      groups:\n        - system:masters"
+```
+#### 3.2 如果遇到类似的报错，执行`sudo yum update`
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/012.png)
+#### 3.3 手动修改aws-auth ConfigMap，注意图片中的mapRoles是否有AccoundID
+```
+kubectl get -n kube-system configmap/aws-auth -o yaml | awk "/mapRoles: \|/{print;print \"$ROLE\";next}1" > /tmp/aws-auth-patch.yml
+kubectl patch configmap/aws-auth -n kube-system --patch "$(cat /tmp/aws-auth-patch.yml)"
+kubectl edit -n kube-system configmaps/aws-auth
+```
+![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/013.png)
 
 
 
