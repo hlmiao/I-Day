@@ -42,11 +42,12 @@ echo "export MASTER_ARN=${MASTER_ARN}" | tee -a ~/.bash_profile
 ```
 ## 资源创建
 ### 1. Create EKS Cluster (30min)
-Download yaml file
-
 [ec2-user@ip-172-31-89-175 .ssh]$ echo "export MASTER_ARN=${MASTER_ARN}" | tee -a ~/.bash_profile
 export MASTER_ARN=arn:aws:kms:us-east-1:348026336041:key/e978dc48-4299-4bf7-999c-46101f671ac9
-
+```
+Download yaml file and change it with yourname
+https://github.com/hlmiao/I-Day/raw/master/Devops/CICDforEKS/scripts/eksworkshop-yourname.yaml
+```
 编辑`eksworkshop-youname.yaml`，复制上述`MASTER_ARN`的连接到yaml文件的`keyARN`处
 ```
 eksctl create cluster -f eksworkshop-youname.yaml
@@ -56,6 +57,7 @@ eksctl create cluster -f eksworkshop-youname.yaml
 
 ### 2. Launch Code Commit & CodeBuild
 CloudFormation 执行 ops-deployment-cicd.yaml
+https://github.com/hlmiao/I-Day/raw/master/Devops/CICDforEKS/scripts/ops-deployment-cicd-1020.yaml
 #### 2.1 Going to CloudFormation
 ![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/pic/002.png)
 #### 2.2 Create Stack
@@ -103,7 +105,8 @@ https://console.aws.amazon.com/codesuite/codecommit/repositories/eksworkshop-eks
 ```
 sudo yum -y install python2-pip
 git clone codecommit::us-east-1://eksworkshop-eksctl
-download link
+Download link
+https://github.com/hlmiao/I-Day/raw/master/Devops/CICDforEKS/scripts/WorkshopSampleCode.zip
 ```
 #### 4.4 Following git command to upload code to CodeCommit
 ![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/pic/017.png)
