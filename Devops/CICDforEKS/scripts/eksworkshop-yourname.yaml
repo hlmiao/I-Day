@@ -1,0 +1,25 @@
+---
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: eksworkshop-eksctl
+  region: us-east-1
+  version: "1.17"
+
+availabilityZones: ["us-east-1a", "us-east-1b", "us-east-1c"]
+
+managedNodeGroups:
+- name: nodegroup
+  desiredCapacity: 3
+  ssh:
+    allow: true
+    publicKeyName: eksworkshop
+
+# To enable all of the control plane logs, uncomment below:
+# cloudWatch:
+#  clusterLogging:
+#    enableTypes: ["*"]
+
+secretsEncryption:
+  keyARN: arn:aws:kms:us-east-1:184287144747:key/9264e9fd-57cd-4855-8cea-b5307457a931
