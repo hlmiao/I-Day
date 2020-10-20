@@ -52,7 +52,7 @@ export MASTER_ARN=arn:aws:kms:us-east-1:348026336041:key/e978dc48-4299-4bf7-999c
 eksctl create cluster -f eksworkshop-youname.yaml
 ```
 如果创建EKS中报kubectl版本错误，可以忽略
-https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/001.png?raw=true
+https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/001.png
 
 ### 2. Launch Code Commit & CodeBuild
 CloudFormation 执行 ops-deployment-cicd.yaml
