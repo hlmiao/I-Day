@@ -1,7 +1,6 @@
-如果看不到图片请修改hosts文件
+如果看不到图片请编辑 hosts 文件
 Windows, C:\Windows\System32\drivers\etc\hosts
 MBP, /private/etc/hosts
-
 ```
 # GitHub Start 
 192.30.253.112    Build software better, together 
@@ -22,7 +21,7 @@ MBP, /private/etc/hosts
 151.101.184.133    avatars8.githubusercontent.com
 # GitHub End
 ```
-
+-----
 Reference:
 https://www.eksworkshop.com/
 
