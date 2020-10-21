@@ -1,8 +1,8 @@
 如果看不到图片请编辑 hosts 文件
 - Windows
-C:\Windows\System32\drivers\etc\hosts
+> C:\Windows\System32\drivers\etc\hosts
 - MBP
-/private/etc/hosts
+> /private/etc/hosts
 ```
 # GitHub Start 
 192.30.253.112    Build software better, together 
