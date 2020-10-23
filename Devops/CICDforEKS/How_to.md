@@ -46,7 +46,7 @@ cd /tmp
 ```
 ### 2. Create Key for EKS and Upload to KMS
 ```
-ssh-keygen. ##默认设置，一路回车
+ssh-keygen ##默认设置，一路回车
 ```
 ```
 aws ec2 import-key-pair --key-name "eksworkshop" --public-key-material file://~/.ssh/id_rsa.pub
