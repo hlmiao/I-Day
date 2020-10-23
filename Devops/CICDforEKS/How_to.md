@@ -41,7 +41,7 @@ sudo chmod +x /usr/local/bin/kubectl
 curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
 cd /tmp
 ./eksctl completion bash >> ~/.bash_completion
-./etc/profile.d/bash_completion.sh
+. /etc/profile.d/bash_completion.sh
 . ~/.bash_completion
 ```
 ### 2. Create Key for EKS and Upload to KMS
