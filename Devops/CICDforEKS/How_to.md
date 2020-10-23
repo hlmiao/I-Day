@@ -110,6 +110,7 @@ https://github.com/hlmiao/I-Day/raw/master/Devops/CICDforEKS/scripts/ops-deploym
 Reference: https://www.eksworkshop.com/intermediate/220_codepipeline/configmap/
 #### 3.1 Change Account ID to yours if you do not config in your env
 ```
+[ec2-user@ip-172-31-34-126 ~]$ curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | grep -oP '"accountId"\s*:\s*"\K[^"]+'
 ROLE="    - rolearn: arn:aws:iam::$ACCOUNT_ID:role/EksWorkshopCodeBuildKubectlRole\n      username: build\n      groups:\n        - system:masters"
 ```
 #### 3.2 如果遇到类似的报错，执行`sudo yum update`
