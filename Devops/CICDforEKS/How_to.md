@@ -74,9 +74,9 @@ export MASTER_ARN=arn:aws:kms:us-east-1:348026336041:key/e978dc48-4299-4bf7-999c
 Download yaml file and change it with yourname
 https://github.com/hlmiao/I-Day/raw/master/Devops/CICDforEKS/scripts/eksworkshop-yourname.yaml
 ```
-编辑`eksworkshop-youname.yaml`，复制上述`MASTER_ARN`的连接到yaml文件的`keyARN`处
+编辑`eksworkshop-yourname.yaml`，复制上述`MASTER_ARN`的连接到yaml文件的`keyARN`处
 ```
-eksctl create cluster -f eksworkshop-youname.yaml
+eksctl create cluster -f eksworkshop-yourname.yaml
 ```
 如果创建EKS中报kubectl版本错误，可以忽略
 ![image](https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKS/pic/001.png)
