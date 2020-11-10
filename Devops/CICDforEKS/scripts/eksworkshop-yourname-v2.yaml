@@ -1,0 +1,19 @@
+---
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: eks-test
+  region: us-east-1
+  version: "1.18"
+
+availabilityZones: ["us-east-1a", "us-east-1b", "us-east-1c"]
+
+#managedNodeGroups:
+#- name: nodegroup
+#  desiredCapacity: 3
+
+# To enable all of the control plane logs, uncomment below:
+# cloudWatch:
+#  clusterLogging:
+#    enableTypes: ["*"]
