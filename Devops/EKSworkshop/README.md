@@ -1,8 +1,8 @@
 # workshop-eks
 
-## 1. [Login to AWS Console](01.login-to-aws-console.md)
+## 1. [Login to AWS Console](1.login-to-aws-console.md)
 
-## 2. [Install tools for EKS](02.install-tools-for-eks.md)
+## 2. [Install tools for EKS](2.install-tools-for-eks.md)
 
 ## 3. [Create EKS nodegroup](03.create-eks-nodegroup.md)
 
