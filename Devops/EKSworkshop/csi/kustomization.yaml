@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+bases:
+  - ../../base
+images:
+  - name: 048912060910.dkr.ecr.cn-northwest-1.amazonaws.com.cn/gcr/google_containers/provider-aws/aws-ebs-csi-driver
+    newTag: v1.4.0
+  - name: 048912060910.dkr.ecr.cn-northwest-1.amazonaws.com.cn/gcr/google_containers/sig-storage/csi-provisioner
+    newTag: v2.1.1
+  - name: 048912060910.dkr.ecr.cn-northwest-1.amazonaws.com.cn/gcr/google_containers/sig-storage/csi-attacher
+    newTag: v3.1.0
+  - name: 048912060910.dkr.ecr.cn-northwest-1.amazonaws.com.cn/gcr/google_containers/sig-storage/livenessprobe
+    newTag: v2.2.0
+  - name: 048912060910.dkr.ecr.cn-northwest-1.amazonaws.com.cn/gcr/google_containers/sig-storage/csi-snapshotter
+    newTag: v3.0.3
+  - name: 048912060910.dkr.ecr.cn-northwest-1.amazonaws.com.cn/gcr/google_containers/sig-storage/csi-resizer
+    newTag: v1.1.0
+  - name: 048912060910.dkr.ecr.cn-northwest-1.amazonaws.com.cn/gcr/google_containers/sig-storage/csi-node-driver-registrar
+    newTag: v2.1.0
