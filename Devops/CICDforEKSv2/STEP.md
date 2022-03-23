@@ -4,7 +4,7 @@ https://www.eksworkshop.com/020_prerequisites/workspace/
 https://www.eksworkshop.com/020_prerequisites/workspaceiam/
 ### 3.Setup EKS cluster (over 20 minutes)
 https://www.eksworkshop.com/030_eksctl/launcheks/
-### 4.CICD With Codepipeline
+### 4.Pre-requisite check with Codepipeline
 https://www.eksworkshop.com/intermediate/220_codepipeline/
 ### 5.Download zip file and upload to Cloud9
 https://github.com/hlmiao/I-Day/blob/master/Devops/CICDforEKSv2/source/eks-workshop-sample-api-service-go-master.zip
@@ -17,7 +17,7 @@ TeamRole:~/environment $ unzip -n eks-workshop-sample-api-service-go-master.zip 
 ```
 git status
 git add .
-git commit -am "1 Added all files"
+git commit -am "Added all files"
 git push
 git status
 ```
